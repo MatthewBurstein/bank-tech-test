@@ -1,7 +1,9 @@
-const printHeaders = ['date', 'credit', 'debit', 'balance'].join(' || ')
+const printHeaders = ['date', 'credit', 'debit', 'balance'].join(' || ');
 
-const accountPrinter = function(account) {
-
+const accountPrinter = function accountPrinter(account) {
+  const output = account.transactions.map(transaction => _transactionPrintString(transaction));
+  output.unshift(printHeaders);
+  return output.join('\n');
 };
 
 const transactionPrinter = function transactionPrinter(transaction) {

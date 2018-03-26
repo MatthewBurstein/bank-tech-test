@@ -15,10 +15,9 @@ describe('printer.js', () => {
     testAccount = {
       transactions: [transaction1, transaction2],
     };
-
-    transaction1PrintString = '22/04/2016 || 9.00 || || 109.00';
-    transaction2PrintString = '18/06/2017 || || 7.00 || 102.00';
     printHeadersString = 'date || credit || debit || balance';
+    transaction1PrintString = `${printHeadersString}\n22/04/2016 || 9.00 || || 109.00`;
+    transaction2PrintString = `${printHeadersString}\n18/06/2017 || || 7.00 || 102.00`;
     testAccountPrintString = [printHeadersString, transaction2PrintString, transaction1PrintString].join('\n');
   });
 

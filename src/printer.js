@@ -1,21 +1,24 @@
+const printHeaders = ['date', 'credit', 'debit', 'balance'].join(' || ')
+
 const accountPrinter = function(account) {
 
 };
 
 const transactionPrinter = function transactionPrinter(transaction) {
-  const output = [];
+  return `${printHeaders}\n${_transactionPrintString(transaction)}`
+};
+
+const _transactionPrintString = function _transactionPrintString(transaction) {
   const date = _dateConverter(transaction.date);
-  output.push(date);
-  output.push(_createTransactionString(transaction.amount))
-  output.push(_padCurrencyString(transaction.resultingBalance));
-  return output.join(' || ').replace('  ', ' ');
+  const transactionString = _createTransactionString(transaction.amount);
+  const balanceString = _padCurrencyString(transaction.resultingBalance);
+  return [date, transactionString, balanceString].join(' || ').replace('  ', ' ');
 };
 
 const _dateConverter = function _dateConverter(date) {
   const day = _ensureDoubleDigit(date.getDate());
   const month = _ensureDoubleDigit(date.getMonth());
   const year = date.getFullYear();
-
   return [day, month, year].join('/');
 };
 
@@ -28,13 +31,7 @@ const _ensureDoubleDigit = function _ensureDoubleDigit(number) {
 };
 
 const _createTransactionString = function _createTransactionString(number) {
-  let transactionString;
-  if (number > 0) {
-    transactionString = `${_padCurrencyString(number)} ||`;
-  } else {
-    transactionString = `|| ${_padCurrencyString(-number)}`;
-  }
-  return transactionString;
+  return number > 0 ? `${_padCurrencyString(number)} ||` : `|| ${_padCurrencyString(-number)}`;
 };
 
 const _padCurrencyString = function _addTrailingZeroes(number) {

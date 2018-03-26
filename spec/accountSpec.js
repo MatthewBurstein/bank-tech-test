@@ -41,8 +41,18 @@ describe('Account', () => {
         resultingBalance: 90,
         date: testDate,
       };
-      console.log(account.transactions)
+
       expect(account.transactions[0]).toEqual(testWithdrawal);
+    });
+
+    it('throws "Amount must be positive" error if amount <= 0', () => {
+      const errorMessage = 'Amount must be positive';
+      expect(() => {account.withdraw(0)}).toThrowError(errorMessage);
+    });
+
+    it('throws "Funds too low" error if amount > current balance', () => {
+      const errorMessage = 'Funds too low';
+      expect(() => {account.withdraw(200)}).toThrowError(errorMessage);
     });
   });
 
@@ -67,6 +77,11 @@ describe('Account', () => {
       };
 
       expect(account.transactions[0]).toEqual(testDeposit);
+    });
+
+    it('throws "Amount must be positive" error if amount <= 0', () => {
+      const errorMessage = 'Amount must be positive';
+      expect(() => {account.deposit(0)}).toThrowError(errorMessage);
     });
   });
 });

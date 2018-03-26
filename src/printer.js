@@ -1,7 +1,9 @@
 const printHeaders = ['date', 'credit', 'debit', 'balance'].join(' || ');
 
 const accountPrinter = function accountPrinter(account) {
-  const output = account.transactions.map(transaction => _transactionPrintString(transaction));
+  const output = account.transactions.map(
+    transaction => _transactionPrintString(transaction)
+  );
   output.unshift(printHeaders);
   return output.join('\n');
 };
@@ -14,12 +16,12 @@ const _transactionPrintString = function _transactionPrintString(transaction) {
   const date = _dateConverter(transaction.date);
   const transactionString = _createDebitCreditString(transaction.amount);
   const balanceString = _padCurrencyString(transaction.resultingBalance);
-  return [date, transactionString, balanceString].join(' || ').replace('  ', ' ');
+  return [date, transactionString, balanceString].join(' || ');
 };
 
 const _dateConverter = function _dateConverter(date) {
   const day = _ensureDoubleDigit(date.getDate());
-  const month = _ensureDoubleDigit(date.getMonth());
+  const month = _ensureDoubleDigit(date.getMonth() + 1);
   const year = date.getFullYear();
   return [day, month, year].join('/');
 };

@@ -4,20 +4,20 @@ describe('printer.js', () => {
     transaction1 = {
       amount: 9,
       resultingBalance: 109,
-      date: new Date(2016, 4, 22),
+      date: new Date(2016, 11, 22),
     };
     transaction2 = {
       amount: -7,
       resultingBalance: 102,
-      date: new Date(2017, 6, 18),
+      date: new Date(2017, 06, 03),
     };
 
     testAccount = {
       transactions: [transaction2, transaction1],
     };
     printHeadersString = 'date || credit || debit || balance';
-    transaction1PrintString = '22/04/2016 || 9.00 || || 109.00';
-    transaction2PrintString = '18/06/2017 || || 7.00 || 102.00';
+    transaction1PrintString = '22/12/2016 || 9.00 || || 109.00';
+    transaction2PrintString = '03/07/2017 || || 7.00 || 102.00';
     testAccountPrintString = [printHeadersString, transaction2PrintString, transaction1PrintString].join('\n');
   });
 
@@ -26,7 +26,7 @@ describe('printer.js', () => {
       expect(accountPrinter(testAccount)).toEqual(testAccountPrintString);
     });
   });
-  
+
   describe('#transactionPrinter()', () => {
     it('returns the correct string for a given transaction', () => {
       const transaction1StringWithHeaders = `${printHeadersString}\n${transaction1PrintString}`;

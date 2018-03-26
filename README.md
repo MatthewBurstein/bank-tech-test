@@ -1,5 +1,15 @@
 ## Bank Tech Test
 
+#### Installation
+
+None required. Simply clone the repository.
+
+#### To run tests
+```
+$ cd /path/to/the/repository
+$ open spec/specRunner.html
+```
+
 #### User stories
 
 ```

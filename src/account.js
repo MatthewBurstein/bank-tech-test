@@ -16,7 +16,7 @@ Account.prototype._transaction = function _transaction(amount) {
   const transaction = {
     amount,
     resultingBalance: this.balance,
-    date: Date(),
+    date: new Date(),
   };
   this.transactions.unshift(transaction);
 };

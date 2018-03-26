@@ -31,7 +31,7 @@ describe('Account', () => {
     });
 
     it('stores the amount of the withdrawal in the transaction object', () => {
-      expect(account.transactions[0].amount).toEqual(10);
+      expect(account.transactions[0].amount).toEqual(-10);
     });
 
     it('stores the resulting balance in the transaction object', () => {

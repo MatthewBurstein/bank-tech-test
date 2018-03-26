@@ -26,14 +26,4 @@ describe('printer.js', () => {
       expect(accountPrinter(testAccount)).toEqual(testAccountPrintString);
     });
   });
-
-  describe('#transactionPrinter()', () => {
-    it('returns the correct string for a given transaction', () => {
-      const transaction1StringWithHeaders = `${printHeadersString}\n${transaction1PrintString}`;
-      const transaction2StringWithHeaders = `${printHeadersString}\n${transaction2PrintString}`;
-
-      expect(transactionPrinter(transaction1)).toEqual(transaction1StringWithHeaders);
-      expect(transactionPrinter(transaction2)).toEqual(transaction2StringWithHeaders);
-    });
-  });
 });

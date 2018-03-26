@@ -8,10 +8,6 @@ const accountPrinter = function accountPrinter(account) {
   return output.join('\n');
 };
 
-const transactionPrinter = function transactionPrinter(transaction) {
-  return `${printHeaders}\n${_transactionPrintString(transaction)}`;
-};
-
 const _transactionPrintString = function _transactionPrintString(transaction) {
   const date = _dateConverter(transaction.date);
   const transactionString = _createDebitCreditString(transaction.amount);

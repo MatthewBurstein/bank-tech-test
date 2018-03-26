@@ -4,8 +4,12 @@ function Account(initialBalance = 0) {
 }
 
 Account.prototype.withdraw = function withdraw(amount) {
-  const transaction = {};
   this.balance -= amount;
+  const transaction = {
+    amount,
+    resultingBalance: this.balance,
+    date: Date(),
+  };
   this.transactions.push(transaction);
 };
 

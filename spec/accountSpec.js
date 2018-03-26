@@ -1,7 +1,9 @@
 describe('Account', () => {
-  let account;
+  let account, testDate;
   beforeEach(() => {
     account = new Account(100);
+    testDate = new Date(2017, 07, 22);
+    jasmine.clock().mockDate(testDate);
   });
 
   it('accepts an initial balance', () => {
@@ -24,8 +26,20 @@ describe('Account', () => {
       expect(account.balance).toEqual(90);
     });
 
-    it('adds an object to the accounts transactions', () => {
+    it('adds a transaction to the accounts transactions', () => {
       expect(account.transactions.length).toEqual(1);
+    });
+
+    it('stores the amount of the withdrawal in the transaction object', () => {
+      expect(account.transactions[0].amount).toEqual(10);
+    });
+
+    it('stores the resulting balance in the transaction object', () => {
+      expect(account.transactions[0].resultingBalance).toEqual(90);
+    });
+
+    it('stores the current date in the transaction object', () => {
+      expect(account.transactions[0].date).toEqual(testDate);
     });
   });
 

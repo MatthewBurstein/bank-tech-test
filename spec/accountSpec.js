@@ -7,16 +7,19 @@ describe('Account', () => {
   });
 
   describe('when initial balance provided', () => {
-    it('calls this.deposit(initialBalance)', () => {
+    it('stores transaction object for initial balance', () => {
       expect(account.balance).toEqual(100);
       expect(account.transactions.length).toEqual(1);
     });
   });
 
-  it('has initial balance 0 if none is given', () => {
-    const accountNoBalanceGiven = new Account();
+  describe('when initial balance not provided', () => {
+    it('does not store a transaction object and does not change balance', () => {
+      const accountNoBalanceGiven = new Account();
 
-    expect(accountNoBalanceGiven.balance).toEqual(0);
+      expect(accountNoBalanceGiven.balance).toEqual(0);
+      expect(accountNoBalanceGiven.transactions.length).toEqual(0);
+    });
   });
 
   describe('#withdraw()', () => {

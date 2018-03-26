@@ -8,15 +8,15 @@ Account.prototype.withdraw = function withdraw(amount) {
 };
 
 Account.prototype.deposit = function deposit(amount) {
-  this.balance += amount;
+  this._transaction(amount);
 };
 
 Account.prototype._transaction = function _transaction(amount) {
   this.balance += amount;
   const transaction = {
-    amount: amount,
+    amount,
     resultingBalance: this.balance,
     date: Date(),
   };
-  this.transactions.push(transaction);
+  this.transactions.unshift(transaction);
 };

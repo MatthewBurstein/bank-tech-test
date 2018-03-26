@@ -26,7 +26,7 @@ describe('Account', () => {
       expect(account.balance).toEqual(90);
     });
 
-    it('adds a transaction to the accounts transactions', () => {
+    it("adds a transaction to the account's transactions", () => {
       expect(account.transactions.length).toEqual(1);
     });
 
@@ -36,16 +36,33 @@ describe('Account', () => {
         resultingBalance: 90,
         date: testDate
       }
-      
+
       expect(account.transactions[0]).toEqual(testWithdrawal)
     });
   });
 
   describe('deposit', () => {
-    it('adds the amount to the balance', () => {
-      account.deposit(10);
 
+    beforeEach(() => {
+      account.deposit(10);
+    });
+
+    it('adds the amount to the balance', () => {
       expect(account.balance).toEqual(110);
+    });
+
+    it("adds a transaction to the account's transactions", () => {
+      expect(account.transactions.length).toEqual(1)
+    });
+
+    it('stores the date, amount and resulting balance in the transaction object', () => {
+      let testDeposit = {
+        amount: 10,
+        resultingBalance: 110,
+        date: testDate
+      }
+
+      expect(account.transactions[0]).toEqual(testDeposit)
     });
   });
 });

@@ -30,16 +30,14 @@ describe('Account', () => {
       expect(account.transactions.length).toEqual(1);
     });
 
-    it('stores the amount of the withdrawal in the transaction object', () => {
-      expect(account.transactions[0].amount).toEqual(-10);
-    });
-
-    it('stores the resulting balance in the transaction object', () => {
-      expect(account.transactions[0].resultingBalance).toEqual(90);
-    });
-
-    it('stores the current date in the transaction object', () => {
-      expect(account.transactions[0].date).toEqual(testDate);
+    it('stores the date, amount and resulting balance in the transaction object', () => {
+      let testWithdrawal = {
+        amount: -10,
+        resultingBalance: 90,
+        date: testDate
+      }
+      
+      expect(account.transactions[0]).toEqual(testWithdrawal)
     });
   });
 

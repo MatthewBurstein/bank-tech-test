@@ -2,7 +2,7 @@ describe('Account', () => {
   let account, testDate;
   beforeEach(() => {
     account = new Account(100);
-    testDate = new Date(2017, 07, 22);
+    testDate = new Date(2017, 7, 22);
     jasmine.clock().mockDate(testDate);
   });
 
@@ -16,8 +16,7 @@ describe('Account', () => {
     expect(accountNoBalanceGiven.balance).toEqual(0);
   });
 
-  describe('withdraw', () => {
-
+  describe('#withdraw()', () => {
     beforeEach(() => {
       account.withdraw(10);
     });
@@ -31,18 +30,17 @@ describe('Account', () => {
     });
 
     it('stores the date, amount and resulting balance in the transaction object', () => {
-      let testWithdrawal = {
+      const testWithdrawal = {
         amount: -10,
         resultingBalance: 90,
-        date: testDate
-      }
+        date: testDate,
+      };
 
-      expect(account.transactions[0]).toEqual(testWithdrawal)
+      expect(account.transactions[0]).toEqual(testWithdrawal);
     });
   });
 
-  describe('deposit', () => {
-
+  describe('#deposit()', () => {
     beforeEach(() => {
       account.deposit(10);
     });
@@ -52,17 +50,17 @@ describe('Account', () => {
     });
 
     it("adds a transaction to the account's transactions", () => {
-      expect(account.transactions.length).toEqual(1)
+      expect(account.transactions.length).toEqual(1);
     });
 
     it('stores the date, amount and resulting balance in the transaction object', () => {
-      let testDeposit = {
+      const testDeposit = {
         amount: 10,
         resultingBalance: 110,
-        date: testDate
-      }
+        date: testDate,
+      };
 
-      expect(account.transactions[0]).toEqual(testDeposit)
+      expect(account.transactions[0]).toEqual(testDeposit);
     });
   });
 });

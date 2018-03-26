@@ -6,8 +6,11 @@ describe('Account', () => {
     jasmine.clock().mockDate(testDate);
   });
 
-  it('accepts an initial balance', () => {
-    expect(account.balance).toEqual(100);
+  describe('when initial balance provided', () => {
+    it('calls this.deposit(initialBalance)', () => {
+      expect(account.balance).toEqual(100);
+      expect(account.transactions.length).toEqual(1);
+    });
   });
 
   it('has initial balance 0 if none is given', () => {
@@ -26,7 +29,7 @@ describe('Account', () => {
     });
 
     it("adds a transaction to the account's transactions", () => {
-      expect(account.transactions.length).toEqual(1);
+      expect(account.transactions.length).toEqual(2);
     });
 
     it('stores the date, amount and resulting balance in the transaction object', () => {
@@ -35,7 +38,7 @@ describe('Account', () => {
         resultingBalance: 90,
         date: testDate,
       };
-
+      console.log(account.transactions)
       expect(account.transactions[0]).toEqual(testWithdrawal);
     });
   });
@@ -50,7 +53,7 @@ describe('Account', () => {
     });
 
     it("adds a transaction to the account's transactions", () => {
-      expect(account.transactions.length).toEqual(1);
+      expect(account.transactions.length).toEqual(2);
     });
 
     it('stores the date, amount and resulting balance in the transaction object', () => {

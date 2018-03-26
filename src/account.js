@@ -1,7 +1,10 @@
-function Account(initialBalance = 0) {
-  this.balance = initialBalance;
+function Account(initialBalance) {
+  this.balance = 0;
   this.transactions = [];
-}
+  if (initialBalance !== undefined) {
+    this.deposit(initialBalance);
+  }
+};
 
 Account.prototype.withdraw = function withdraw(amount) {
   this._transaction(-amount);

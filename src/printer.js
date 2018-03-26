@@ -7,12 +7,12 @@ const accountPrinter = function accountPrinter(account) {
 };
 
 const transactionPrinter = function transactionPrinter(transaction) {
-  return `${printHeaders}\n${_transactionPrintString(transaction)}`
+  return `${printHeaders}\n${_transactionPrintString(transaction)}`;
 };
 
 const _transactionPrintString = function _transactionPrintString(transaction) {
   const date = _dateConverter(transaction.date);
-  const transactionString = _createTransactionString(transaction.amount);
+  const transactionString = _createDebitCreditString(transaction.amount);
   const balanceString = _padCurrencyString(transaction.resultingBalance);
   return [date, transactionString, balanceString].join(' || ').replace('  ', ' ');
 };
@@ -32,8 +32,11 @@ const _ensureDoubleDigit = function _ensureDoubleDigit(number) {
   return numString;
 };
 
-const _createTransactionString = function _createTransactionString(number) {
-  return number > 0 ? `${_padCurrencyString(number)} ||` : `|| ${_padCurrencyString(-number)}`;
+const _createDebitCreditString = function _createDebitCreditString(number) {
+  const output = number > 0 ?
+    `${_padCurrencyString(number)} ||` :
+    `|| ${_padCurrencyString(-number)}`;
+  return output;
 };
 
 const _padCurrencyString = function _addTrailingZeroes(number) {
